@@ -299,6 +299,7 @@ input.frame3 {
     grid-template-rows: 4fr 1fr 1fr;
     height: 50vh;
   }
+  
 
   input {
     grid-column-start: column-start;
