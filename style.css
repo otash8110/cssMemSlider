@@ -1,0 +1,329 @@
+body {
+  margin: 0;
+  background-color: #25282a;
+}
+
+p {
+  margin: 0;
+  color: #fff;
+}
+
+#slider-wrapper {
+  width: 80%;
+  margin: 20px auto;
+  height: 90vh;
+  display: grid;
+  grid-template-columns: [column-start]3fr [column-two-start] 1fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 20px 0;
+}
+
+input {
+  grid-column-start: column-two-start;
+  grid-row-start: 2;
+  margin: 0;
+  appearance: none;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  cursor: pointer;
+  justify-self: end;
+  position: relative;
+}
+
+input::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  border: 1px solid #71abfe;
+  background-color: #71abfe;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+input:hover::after {
+  border-color: #fff;
+  background-color: #fff;
+}
+
+input:checked::after {
+  background-color: transparent;
+}
+
+input.frame1 {
+  margin-right: 90px;
+}
+input.frame2 {
+  margin-right: 60px;
+}
+input.frame3 {
+  margin-right: 30px;
+}
+
+.slider-images {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  grid-row-start: span 1;
+  grid-column: 1 / 3;
+  background-color: royalblue;
+}
+
+.slider-texts {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.slider-texts p {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.slider-images .img-block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transform: translateX(0);
+}
+
+.slider-images .img1-block {
+  background: url("imgs/img1.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.slider-images .img2-block {
+  background: url("imgs/img2.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.slider-images .img3-block {
+  background: url("imgs/img3.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.slider-images .img4-block {
+  background: url("imgs/img4.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.slider-images .img-block img {
+  object-fit: contain;
+  width: 100%;
+  backdrop-filter: grayscale(1) blur(5px);
+}
+
+@keyframes transit {
+  0% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes transitText {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  69% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes transitTextDefault {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.frame1:checked ~ .slider-images .img1-block {
+  animation-name: transit;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.frame1:not(:checked) ~ .slider-images .img1-block {
+  animation-name: transitTextDefault;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  z-index: 2;
+}
+
+.frame1:checked ~ .slider-texts #text1 {
+  animation-name: transitText;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.frame1:not(:checked) ~ .slider-texts #text1 {
+  animation-name: transitTextDefault;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.frame2:checked ~ .slider-images .img2-block {
+  animation-name: transit;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.frame2:not(:checked) ~ .slider-images .img2-block {
+  animation-name: transitTextDefault;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  z-index: 2;
+}
+
+.frame2:checked ~ .slider-texts #text2 {
+  animation-name: transitText;
+  animation-duration: 1s;
+  transition: all 0.3s ease;
+  z-index: 2;
+  animation-fill-mode: forwards;
+}
+
+.frame2:not(:checked) ~ .slider-texts #text2 {
+  animation-name: transitTextDefault;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.frame3:checked ~ .slider-images .img3-block {
+  animation-name: transit;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.frame3:not(:checked) ~ .slider-images .img3-block {
+  animation-name: transitTextDefault;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  z-index: 2;
+}
+
+.frame3:checked ~ .slider-texts #text3 {
+  animation-name: transitText;
+  animation-duration: 1s;
+  transition: all 0.3s ease;
+  z-index: 2;
+  animation-fill-mode: forwards;
+}
+
+.frame3:not(:checked) ~ .slider-texts #text3 {
+  animation-name: transitTextDefault;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.frame4:checked ~ .slider-images .img4-block {
+  animation-name: transit;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.frame4:not(:checked) ~ .slider-images .img4-block {
+  animation-name: transitTextDefault;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  z-index: 2;
+}
+
+.frame4:checked ~ .slider-texts #text4 {
+  animation-name: transitText;
+  animation-duration: 1s;
+  transition: all 0.3s ease;
+  z-index: 2;
+  animation-fill-mode: forwards;
+}
+
+.frame4:not(:checked) ~ .slider-texts #text4 {
+  animation-name: transitTextDefault;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@media (max-width: 480px) {
+  #slider-wrapper {
+    grid-template-columns: [column-start] 1fr;
+    grid-template-rows: 4fr 1fr 1fr;
+    height: 50vh;
+  }
+  
+
+  input {
+    grid-column-start: column-start;
+    justify-self: center;
+  }
+
+  input.frame4 {
+    margin-left: 70px;
+  }
+
+  input.frame3 {
+    margin-right: 0;
+    margin-left: 20px;
+  }
+
+  input.frame2 {
+    margin-right: 30px;
+  }
+
+  input.frame1 {
+    margin-right: 80px;
+  }
+
+  .slider-texts {
+    grid-column-start: column-start;
+  }
+}
